@@ -51,6 +51,7 @@ tf_idf_Converter = TF_IDF_Converter(data_adapter.get_X(),data_adapter.get_y(),RA
 data_adapter.make_train_test_val_split(0.125, 0.2)
 tf_idf_Converter.make_train_test_val_split(0.125, 0.2)
 
+#Training with Bow & TF-IDF combined -computationally intensive
 #X_train_idf_bow = hstack([data_adapter.get_X_train(), tf_idf_Converter.get_X_train()])
 #X_val_idf_bow = hstack([data_adapter.get_X_val(), tf_idf_Converter.get_X_val()])
 #X_train_val_idf_bow = hstack([data_adapter.get_X_train_val(), tf_idf_Converter.get_X_train_val()])
@@ -106,6 +107,7 @@ def parameter_tuning(param_space, model,X_train, y_train,X_val,y_val):
     print(f"Test precision ham on validation data: {test_precision_ham :.4f}")
     return opt
 
+#Method for using grid search or bayes search based on SEARCHTYPE - currently not in use
 def parameter_tuning_with_FLEX_opt(classifier,X_train, y_train,X_val,y_val):
     model = classifier.get_model()
     model.fit(X_train,y_train[0])
@@ -124,6 +126,7 @@ def parameter_tuning_with_FLEX_opt(classifier,X_train, y_train,X_val,y_val):
     print(f"Test accuracy: {test_accuracy:.2f}")
     return opt
 
+#Testing the best model provided by the optimizer on the test data
 def test_best_model_on_test_data(X_train_val, y_train_val,X_test,y_test, optimizer):
         best_params = optimizer.best_params_
         best_model = optimizer.best_estimator_

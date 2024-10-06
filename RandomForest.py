@@ -11,7 +11,7 @@ class Random_Forest_Classifier:
         'max_depth': space.Integer(2, 30),                   # Maximum depth of the trees
         'min_samples_split': space.Integer(2, 10),           # Minimum number of samples to split a node
         'min_samples_leaf': space.Integer(1, 10),            # Minimum samples per leaf
-        'max_features': space.Categorical(['sqrt', 'log2']),  # Categorical choice
+        'max_features': space.Categorical(['sqrt', 'log2']), # Categorical choice
         'bootstrap': space.Categorical([False, True])        # Whether to use bootstrap sampling
     }
     

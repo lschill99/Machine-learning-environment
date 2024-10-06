@@ -25,7 +25,7 @@ class TF_IDF_Converter:
 
     def make_train_test_val_split(self, sizeValidationData, sizeTestData):
         assert(sizeTestData <= 1 or sizeTestData <= 1 )
-        # First, split into train/validatio and remaining data (tes)
+        # First, split into train/validation and remaining data (test)
         self.X_train_val, self.X_test, self.y_train_val, self.y_test = train_test_split(self.X.T, self.y, test_size=sizeTestData, random_state=self.randomState) #random state has to be the same as in the data adapter
 
         # Now split the train/validation data into validation and train sets
@@ -47,8 +47,6 @@ class TF_IDF_Converter:
 
     def transform_data_from_bow_to_TF_IDF(self, X_data):
         # Convert BoW to a sparse matrix (which is more efficient for large data)
-        # Assuming df_X is your DataFrame with 10,000 rows and 57,173 columns
-        # representing the BoW of emails
 
         # Step 1: Convert DataFrame to a sparse matrix (if it's not already sparse)
         BoW_sparse = csr_matrix(X_data.values)
@@ -63,7 +61,7 @@ class TF_IDF_Converter:
         # To view the TF-IDF matrix as a dense matrix (optional):
         tfidf_dense = X_tfidf.toarray()
 
-        # If you want to inspect the IDF values (optional)
+        # To inspect the IDF values (optional)
         idf_values = tfidf_transformer.idf_
 
         # Print the shape of the TF-IDF matrix

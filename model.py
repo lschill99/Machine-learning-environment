@@ -2,7 +2,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics import f1_score, precision_score, recall_score
 
 
-class Model:
+class Model:  #This class is deprecated and is of no further use but could be redesigned to become an interface
     
     def __init__(self, model):
         self.model = model

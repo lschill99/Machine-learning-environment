@@ -9,8 +9,8 @@ class Logistic_Regression_Classifier:
     # Define the parameter space for Logistic Regression
     param_space_LogReg = {
         'C': (1e-6, 1e+6, 'log-uniform'),  # Regularization strength
-        'solver': ['liblinear', 'saga'],   # Solvers that work with small datasets
-        'penalty': ['l1', 'l2'],            # Regularization types
+        'solver': ['liblinear', 'saga'],   # Solvers
+        'penalty': ['l1', 'l2'],           # Regularization types
         'max_iter': space.Integer(200,500)
     }
 

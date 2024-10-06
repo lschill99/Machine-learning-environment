@@ -6,7 +6,7 @@ class SVM_Classifier:
     randomState = 42
     svm = SVC(random_state=randomState)
 
-    # Define your parameter space for SVM
+    # Define parameter space for SVM
     param_space_SVM = {
         'C': space.Real(1e-6, 1e+6, prior='log-uniform'),      # Regularization parameter
         'gamma': space.Real(1e-6, 1e+1, prior='log-uniform'),  # Kernel coefficient for 'rbf', 'poly', and 'sigmoid'
@@ -25,7 +25,7 @@ class SVM_Classifier:
     
     def set_model(self,model):
         if isinstance(model, SVC):
-         # Set the mode
+         # Set the model
          self.model = model
         else:
          print("The model is not an instance of SVC.")

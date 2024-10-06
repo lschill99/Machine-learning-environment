@@ -92,8 +92,8 @@ class DataAdapter:
 
 
     #Ensure that train-test-validation-split is correct
-#assert(X_train.shape ==(7000, 57173))
-#assert(X_val.shape ==(1500, 57173))
-#assert(X_test.shape ==(1500, 57173))
+    #assert(X_train.shape ==(7000, 57173))
+    #assert(X_val.shape ==(1500, 57173))
+    #assert(X_test.shape ==(1500, 57173))
    
 
