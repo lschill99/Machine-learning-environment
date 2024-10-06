@@ -47,9 +47,9 @@ data_adapter = DataAdapter(RANDOMSTATE)
 storage = ParameterStorage()
 
 data_adapter.load_data('data/emails.mat')
-#tf_idf_Converter = TF_IDF_Converter(data_adapter.get_X(),data_adapter.get_y(),RANDOMSTATE)
+tf_idf_Converter = TF_IDF_Converter(data_adapter.get_X(),data_adapter.get_y(),RANDOMSTATE)
 data_adapter.make_train_test_val_split(0.125, 0.2)
-#tf_idf_Converter.make_train_test_val_split(0.125, 0.2)
+tf_idf_Converter.make_train_test_val_split(0.125, 0.2)
 
 #X_train_idf_bow = hstack([data_adapter.get_X_train(), tf_idf_Converter.get_X_train()])
 #X_val_idf_bow = hstack([data_adapter.get_X_val(), tf_idf_Converter.get_X_val()])
@@ -201,46 +201,44 @@ ham_precision_scorer = make_scorer(get_ham_precision_score)
 
 
 
-#print('________Logistic Regression________')
-#optLogReg = parameter_tuning(logisticreg.get_param_space(),logisticreg.get_model(), data_adapter.get_X_train(), data_adapter.get_y_train(), data_adapter.get_X_val(), data_adapter.get_y_val())
-#precision_score_best_model,best_params,best_model = test_best_model_on_test_data(data_adapter.get_X_train_val(),data_adapter.get_y_train_val(),data_adapter.get_X_test(),data_adapter.get_y_test(),optLogReg)
-#storage.set_best_parameters_LogisticRegression(precision_score_best_model,best_params,best_model)
-#storage.get_best_model()
-#logisticreg.set_model(best_model)
-#logisticreg.isFit = True
-#m = calc_metrics(logisticreg,data_adapter.get_X_test(),data_adapter.get_y_test())
+print('________Logistic Regression________')
+optLogReg = parameter_tuning(logisticreg.get_param_space(),logisticreg.get_model(), data_adapter.get_X_train(), data_adapter.get_y_train(), data_adapter.get_X_val(), data_adapter.get_y_val())
+precision_score_best_model,best_params,best_model = test_best_model_on_test_data(data_adapter.get_X_train_val(),data_adapter.get_y_train_val(),data_adapter.get_X_test(),data_adapter.get_y_test(),optLogReg)
+storage.set_best_parameters_LogisticRegression(precision_score_best_model,best_params,best_model)
+storage.get_best_model()
+logisticreg.set_model(best_model)
+logisticreg.isFit = True
+m = calc_metrics(logisticreg,data_adapter.get_X_test(),data_adapter.get_y_test())
 
 
-#print("shapes")
-#print(X_train_idf_bow.shape)
-#print(X_val_idf_bow.shape)
-#print('________RandomForest________')
-#optRandomForest = parameter_tuning(randomForest.get_param_space(),randomForest.get_model(),data_adapter.get_X_train(), data_adapter.get_y_train(), data_adapter.get_X_val(), data_adapter.get_y_val())
-#precision_score_best_model,best_params,best_model = test_best_model_on_test_data(data_adapter.get_X_train_val(),data_adapter.get_y_train_val(),data_adapter.get_X_test(),data_adapter.get_y_test(),optRandomForest)
-#storage.set_best_parameters_RandomForest(precision_score_best_model,best_params,best_model)
-#randomForest.set_model(best_model)
-#randomForest.isFit=True
-#m = calc_metrics(randomForest,data_adapter.get_X_test(),data_adapter.get_y_test())
+
+print('________RandomForest________')
+optRandomForest = parameter_tuning(randomForest.get_param_space(),randomForest.get_model(),data_adapter.get_X_train(), data_adapter.get_y_train(), data_adapter.get_X_val(), data_adapter.get_y_val())
+precision_score_best_model,best_params,best_model = test_best_model_on_test_data(data_adapter.get_X_train_val(),data_adapter.get_y_train_val(),data_adapter.get_X_test(),data_adapter.get_y_test(),optRandomForest)
+storage.set_best_parameters_RandomForest(precision_score_best_model,best_params,best_model)
+randomForest.set_model(best_model)
+randomForest.isFit=True
+m = calc_metrics(randomForest,data_adapter.get_X_test(),data_adapter.get_y_test())
 
 
-#print('________Decision Tree________')
-#optDecisionTree = parameter_tuning(decision_tree.get_param_space(),decision_tree.get_model(), data_adapter.get_X_train(), data_adapter.get_y_train(), data_adapter.get_X_val(), data_adapter.get_y_val())
-#precision_score_best_model,best_params,best_model = test_best_model_on_test_data(data_adapter.get_X_train_val(),data_adapter.get_y_train_val(),data_adapter.get_X_test(),data_adapter.get_y_test(),optDecisionTree)
-#storage.set_best_parameters_DecisionTree(precision_score_best_model,best_params,best_model)
-#storage.get_best_model()
-#decision_tree.set_model(best_model)
-#decision_tree.isFit = True
-#m = calc_metrics(decision_tree,data_adapter.get_X_test(),data_adapter.get_y_test())
+print('________Decision Tree________')
+optDecisionTree = parameter_tuning(decision_tree.get_param_space(),decision_tree.get_model(), data_adapter.get_X_train(), data_adapter.get_y_train(), data_adapter.get_X_val(), data_adapter.get_y_val())
+precision_score_best_model,best_params,best_model = test_best_model_on_test_data(data_adapter.get_X_train_val(),data_adapter.get_y_train_val(),data_adapter.get_X_test(),data_adapter.get_y_test(),optDecisionTree)
+storage.set_best_parameters_DecisionTree(precision_score_best_model,best_params,best_model)
+storage.get_best_model()
+decision_tree.set_model(best_model)
+decision_tree.isFit = True
+m = calc_metrics(decision_tree,data_adapter.get_X_test(),data_adapter.get_y_test())
 
 
-#print('________SVM________')
-#optSVM = parameter_tuning(svm.get_param_space(),svm.get_model(),data_adapter.get_X_train(), data_adapter.get_y_train(), data_adapter.get_X_val(), data_adapter.get_y_val())
-#precision_score_best_model,best_params,best_model = test_best_model_on_test_data(data_adapter.get_X_train_val(),data_adapter.get_y_train_val(),data_adapter.get_X_test(),data_adapter.get_y_test(),optSVM)
-#storage.set_best_parameters_SVM(precision_score_best_model,best_params,best_model)
-#storage.get_best_model()
-#svm.set_model(best_model)
-#svm.isFit = True
-#m = calc_metrics(svm,data_adapter.get_X_test(),data_adapter.get_y_test())
+print('________SVM________')
+optSVM = parameter_tuning(svm.get_param_space(),svm.get_model(),data_adapter.get_X_train(), data_adapter.get_y_train(), data_adapter.get_X_val(), data_adapter.get_y_val())
+precision_score_best_model,best_params,best_model = test_best_model_on_test_data(data_adapter.get_X_train_val(),data_adapter.get_y_train_val(),data_adapter.get_X_test(),data_adapter.get_y_test(),optSVM)
+storage.set_best_parameters_SVM(precision_score_best_model,best_params,best_model)
+storage.get_best_model()
+svm.set_model(best_model)
+svm.isFit = True
+m = calc_metrics(svm,data_adapter.get_X_test(),data_adapter.get_y_test())
 
 
 
